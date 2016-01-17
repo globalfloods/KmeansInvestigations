@@ -1,0 +1,4 @@
+- The script runs two queries against "rastaman" getting temeprature and precipitation data over the specified time frame and region.
+- It performs an aggregation over the time history (currently 90th percentile over the queried history for each variable)
+- Cluster this data using kmeans over the 2 aggregated variables: 90th perc temperature, 90th perc precipitation. (we would have liked to cluster precipitation vs discharge but couldn't get the data out)
+- After clustering every center can be interpreted as the threshold for the cluster to be used to highlight meaningfull rainfalls.

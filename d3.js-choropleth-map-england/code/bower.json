@@ -1,0 +1,30 @@
+{
+  "name": "d3.js-choropleth-map-england",
+  "homepage": "https://github.com/tappoz/GISHackday",
+  "authors": [
+    "Alessio Gottardo"
+  ],
+  "description": "a choropleth map of England break down by LDAs (Local District Authorities) using tooltips and colours",
+  "main": "englishLDAs.html",
+  "moduleType": [],
+  "keywords": [
+    "D3.js",
+    "choropleth",
+    "map"
+  ],
+  "license": "GPL",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.1.4",
+    "d3": "3.5.12"
+  }
+}

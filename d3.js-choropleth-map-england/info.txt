@@ -1,0 +1,49 @@
+http://martinjc.github.io/UK-GeoJSON/
+https://github.com/martinjc/UK-GeoJSON
+http://bost.ocks.org/mike/map/
+
+Choroplet http://bl.ocks.org/mbostock/4060606
+Symbol map http://bl.ocks.org/mbostock/4342045
+
+Local Authority Districts LAD England
+
+wget https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.12/d3.min.js -O src/d3.3.5.12.min.js
+wget https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js -O src/topojson.1.6.19.min.js
+wget https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js -O src/jquery.2.1.4.min.js
+
+----------------
+
+D3.js tutorial - 20 - Maps in D3 
+https://www.youtube.com/watch?v=lJgEx_yb4u0
+Designing Beautiful Maps with D3.js 
+https://www.youtube.com/watch?v=Dsxd8Yz3fmI
+
+MaptimeSF d3.geo part 1: Examples 
+https://www.youtube.com/watch?v=fiRHGZScjhY
+MaptimeSF d3.geo part 2: The Data 
+https://www.youtube.com/watch?v=S7BUMicYEhc
+MaptimeSF d3.geo part 3: The Code
+https://www.youtube.com/watch?v=6Xiq4XuSpoY
+
+
+Local Authority Districts population
+https://www.gov.uk/government/statistics/2011-rural-urban-classification-of-local-authority-and-other-higher-level-geographies-for-statistical-purposes
+https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/389344/RUC11_LAD11_EN.csv
+
+
+
+-------------------------
+
+
+```
+$ python -m SimpleHTTPServer
+```
+Then visit the web page: `http://localhost:8000/englishLDAs.html`
+
+
+
+HTML colour picker:
+http://www.w3schools.com/tags/ref_colorpicker.asp
+
+Yet another animated choropleth map ...
+http://bl.ocks.org/rgdonohue/9280446
