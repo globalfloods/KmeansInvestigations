@@ -1,0 +1,315 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  This Beamer template was created by Cameron Bracken.
+%%  Anyone can freely use or modify it for any purpose
+%%  without attribution.
+%%
+%%  Last Modified: January 9, 2009
+%%
+\documentclass[xcolor=x11names,compress]{beamer}
+%% General document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{Packages}
+\usepackage{graphicx}
+\usepackage{tikz}
+%\usepackage{sidecap}
+%\usepackage{pgfpages}
+\usepackage{multimedia}
+%\setbeameroption{second mode text on second screen=bottom}
+\usetikzlibrary{decorations.fractals}
+\usepackage{amsmath,amsfonts,amssymb, amsthm,array, booktabs, mathrsfs, mathtools,multirow, tabularx}
+\usepackage[round]{natbib}
+\usepackage{float}
+\graphicspath{{undamped_coupling/}, {spectral_standalone/}}
+%\usepackage[font=small,format=hang,labelfont={sf,bf}]{caption}
+%\usepackage{subfig}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useoutertheme[subsection=false,shadow]{miniframes}
+\useoutertheme{miniframes}
+\useinnertheme{default}
+\usefonttheme{serif}
+\usepackage{palatino}
+
+\setbeamerfont{title like}{shape=\scshape}
+\setbeamerfont{frametitle}{shape=\scshape}
+
+\setbeamercolor*{lower separation line head}{bg=DeepSkyBlue4} 
+\setbeamercolor*{normal text}{fg=black,bg=white} 
+\setbeamercolor*{alerted text}{fg=red} 
+\setbeamercolor*{example text}{fg=black} 
+\setbeamercolor*{structure}{fg=black} 
+ 
+\setbeamercolor*{palette tertiary}{fg=black,bg=black!10} 
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!10} 
+
+\renewcommand{\(}{\begin{columns}}
+\renewcommand{\)}{\end{columns}}
+\newcommand{\<}[1]{\begin{column}{#1}}
+\renewcommand{\>}{\end{column}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{document}
+\input{Commands}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{\scshape Introduzione}
+\begin{frame}
+\bf\title{\vspace{-13mm}
+\begin{figure}\centering
+	 \;\quad\includegraphics[scale=.5]{logo.jpg}
+\end{figure}
+
+\textsc{THE (FLOODED) ITALIAN JOB} \vspace{-3mm}}
+%\subtitle{SUBTITLE}
+\author{Alessio Gottardo\\ Daniel Shamoa\\ Tommaso Benacchio
+}
+\date{% 	\begin{tikzpicture}[decoration=Koch curve type 2] 
+% 		\draw[DeepSkyBlue4] decorate{ decorate{ decorate{ (0,0) -- (3,0) }}}; 
+% 	\end{tikzpicture}  
+% 	\\
+% 	\vspace{1cm}
+	%\today
+
+\vspace{-6mm}	
+FloodHack, ECMWF, 17 January 2016
+}
+\titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{How it all started}
+\begin{figure}\centering
+	 \includegraphics[scale=.25]{2016-01-10_18-57-05_Tooltip.png}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{}
+\large
+\pause
+\begin{block}{}
+\bf  Tools: Javascript (d3.js, node.js)
+\end{block}
+\pause
+\vspace{6 mm}
+\begin{block}{}
+\bf LDAs plot on Mercator map of England - threshold-based color filling
+\end{block}
+\pause
+\vspace{6 mm}
+\begin{block}{}
+\bf Tabular finer info through tooltip 
+\end{block}
+\end{frame}
+
+\begin{frame}{IDEA}
+\large
+\pause
+\begin{block}{}
+\bf\begin{center}  Available info + model with data \end{center} 
+\end{block}
+\pause
+\begin{block}{}
+\bf \begin{center} $\Downarrow$ \end{center}
+\end{block}
+\pause
+\begin{block}{}
+\bf  \begin{center} Automating tool for decision and warning \end{center}
+\end{block}
+\pause
+\begin{block}{}
+\bf  SMS to flooded people e/o ONGs etc.
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}{}
+\begin{center}
+\huge\bf\alert{1. FETCHING THE DATA}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{}
+\begin{figure}\centering
+	 \includegraphics[scale=.25]{nightmare-movie-poster-1981-1020209929}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{}
+\large
+\begin{block}{}
+\bf Queries on rasdaman web service
+\end{block}
+\pause
+\vspace{3 mm}
+\begin{block}{}
+\bf Struggling to filter available data, e.g. to take out \alert{ranges}, \alert{subsets}... 
+\end{block}
+\pause
+\vspace{3 mm}
+\begin{block}{}
+\bf Trials with Panoply, netcdf going nowhere...
+\end{block}
+
+\end{frame}
+
+\begin{frame}{}
+
+\begin{center}\bf \huge\alert{Solution: lowering expectations!}\end{center}
+\end{frame}
+
+\begin{frame}{}
+\large
+\begin{figure}\centering
+	 \includegraphics[scale=.2]{rainfall_prob.png}
+\end{figure}
+\begin{block}{}
+\bf \alert{Fixed} rainfall threshold all over the world!
+\end{block}
+\end{frame}
+
+
+\begin{frame}{}
+\large
+\begin{block}{}
+\bf \alert{Smaller} data sets, \alert{simple} measurements, \alert{no} server queries 
+\end{block}
+\end{frame}
+
+
+\begin{frame}{DEVELOPMENT}
+\large
+\begin{block}{}
+\bf Fetching from rasdaman 2m temp and total ppn for a given time interval and a region (eg a nation)
+\end{block}
+\begin{block}{}
+ \bf 
+\pause
+\scriptsize{
+\begin{texttt}{url\_fmt\_tp~=~'http://incubator.ecmwf.int/2e/rasdaman/\\ows?service=WCS\&version=2.0.1\&request=ProcessCoverages\\\&query=for c in (\%s) return encode(c[Lat(\%f:\%f),\\ Long(\%f:\%f), ansi("\%s" : "\%s")], "csv") '
+\\ \vspace{3mm} url\_tp = url\_fmt\_tp \% ("TP", 50.0, 51.0, 1.0, 2.0, "2014-12-20T00:00:00+00:00", "2014-12-30T00:00:00+00:00")}
+\end{texttt}}
+\end{block}
+\end{frame}
+
+\begin{frame}{DEVELOPMENT}
+\large
+\begin{block}{}
+\bf Organize data in \texttt{numpy} array
+\end{block}
+\begin{block}{}
+  \bf 
+ \scriptsize{
+ \begin{texttt}{ def stuff(url\_to\_process):\\
+\# fetch the data\\
+  r = requests.get(url\_to\_process)\\
+  \# clean the data\\
+  r.raise\_for\_status()\\
+  data = np.array(eval(r.text.replace('{', '[').replace('}', ']')))\\
+  print(data.shape)\\
+  \# build the data structure\\
+  final = []\\
+  for col in range(data.shape[0]):\\
+    for row in range(data.shape[1]):\\
+      final.append([(np.arange(max\_lat, min\_lat - 0.5, -step)[row], np.arange(min\_long, max\_long + 0.5, step)[col]), data[col][row]])\\
+  matrix = np.array(final)\\
+  \# sort and return the data structure\\
+  sorted\_matrix = sorted(matrix, key=lambda x : x[0][0])\\
+  return sorted\_matrix}
+\end{texttt}}
+\end{block}
+\end{frame}
+
+\begin{frame}{DEVELOPMENT}
+\large
+\begin{block}{}
+\bf From Python, call R clustering function \alert{k-means}
+\end{block}
+\begin{block}{}
+  \bf 
+ \scriptsize{
+ \begin{texttt}{ 
+base = importr('base')\\
+stats = importr('stats') \\
+\# R to py suff\\
+from rpy2 import robjects \\
+from rpy2.robjects import pandas2ri\\
+from rpy2.robjects.packages import importr \\
+R = robjects.r\\
+\alert{KM = R.kmeans(data\_t2m\_tp, 10)} \\
+centers = np.array(KM.rx2('centers'))\\
+clusters = np.array([np.array(KM.rx2('cluster'))]).T\\
+}
+\end{texttt}}
+\end{block}
+\end{frame}
+
+\begin{frame}{DEVELOPMENT}
+\large
+\begin{block}{}
+\bf Plotting data on lat lon grid
+\end{block}
+\begin{block}{}
+  \bf 
+ \scriptsize{
+  \begin{texttt}{ 
+complete\_data = pd.concat([data\_frame, pd.DataFrame(clusters, columns=['cluster\_id'])], axis=1)\\
+\#stuff = pandas2ri(data\_frame)\\
+plt.scatter(x=data\_t2m\_tp.ix[:,0], y=data\_t2m\_tp.ix[:,1], c=complete\_data.ix[:,4])\\
+plt.show()\\
+\#R.points(data\_lat\_long, col = KM.rx2('cluster'))\\
+plt.scatter(x=data\_lat\_long.ix[:,0], y=data\_lat\_long.ix[:,1], c=complete\_data.ix[:,4])\\
+plt.show()\\
+}
+\end{texttt}}
+\end{block}
+\end{frame}
+
+\begin{frame}{TO BE DONE}
+\large
+\begin{block}{}
+\bf Output: new individual thresholds as means of centroids of the clusters
+\end{block}
+\pause
+\begin{figure}\centering
+	 \includegraphics[scale=.25]{rain_temp.png}
+	 \includegraphics[scale=.25]{lat_long.png}
+\end{figure}
+
+
+\end{frame}
+
+
+
+\begin{frame}{TO BE DONE}
+\large
+\begin{block}{}
+\bf Feeding the new thresholds back to the node.js app and show data on d3.js map
+\end{block}
+\pause
+\vspace{6 mm}
+\begin{block}{}
+\bf Interface with SMS-sending service to people, NGOs etc. for warnings
+\end{block}
+\begin{block}{}
+\bf 
+\end{block}
+\begin{block}{}
+\bf 
+\end{block}
+
+\end{frame}
+
+
+\end{document}
+
